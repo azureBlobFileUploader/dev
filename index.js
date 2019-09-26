@@ -1,5 +1,5 @@
 var azureBlobFileUploader = {
-  uploadBlobLib: function(option) {
+  upload: function(option) {
     return new Promise(function(resolve, reject) {
       try {
         option.displayProcess && option.displayProcess(0);
