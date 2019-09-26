@@ -1,6 +1,6 @@
 {
   "name": "azure-blob-file-uploader",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Upload file directly to azure blob",
   "main": "index.js",
   "scripts": {
