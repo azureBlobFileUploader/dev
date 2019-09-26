@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+
+    <script src="azure-storage.blob.js"></script>
+    <script src="index.js"></script>
+    <form
+      asp-controller="Home"
+      asp-action="UploadSmallFile"
+      enctype="multipart/form-data"
+      id="BlobUploadForm"
+      method="post"
+      class="form-label-left"
+      role="form"
+    >
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Browse…
+                <input
+                  type="file"
+                  style="display: none;"
+                  name="file"
+                  id="FileInput"
+                />
+              </span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              readonly=""
+              id="BrowseInput"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <button
+              type="button"
+              value="Upload to Blob"
+              class="btn btn-default"
+              id="UploadBlob"
+              onclick="uploadBlob()"
+            >
+              Upload to Blob
+            </button>
+          </div>
+        </div>
+        <div class="form-group hidden" id="uploadProgressBarContainer">
+          Uploading...
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              id="uploadProgressBar"
+              aria-valuenow="60"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 0%;"
+            >
+              0%
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <script type="text/javascript">
+     $(document).on("change", ":file", function() {
+        var input = $(this);
+        var label = $("#BrowseInput").val(
+          input
+            .val()
+            .replace(/\\/g, "/")
+            .replace(/.*\//, "")
+        );
+      });
+      async function uploadBlob() {
+        document
+          .getElementById("uploadProgressBarContainer")
+          .classList.remove("hidden");
+
+        var opt = {
+          file: $("#FileInput").get(0).files[0],
+          blobUri: "https://xxxxxxxxx.blob.core.windows.net",
+          sasToken:
+            "?sv=2018-03-28&sr=b&sig=sRtaX0oJb94Y1ilDIq9Vp5%3D&se=2019-09-28T13%3A03%3A36Z&sp=w",
+          container: "yyyyyyyy",
+          path: "path/to/",
+          displayProcess: process => {
+            document.getElementById("uploadProgressBar").style.width =
+              process + "%";
+            document.getElementById("uploadProgressBar").innerHTML =
+              process + "%";
+          }
+        };
+        var result = await azureBlobFileUploader.uploadBlobLib(opt);
+        console.warn(result);
+      }
+    </script>
+  </body>
+</html>

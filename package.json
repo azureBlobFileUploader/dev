@@ -1,0 +1,24 @@
+{
+  "name": "azure-blob-file-uploader",
+  "version": "1.0.0",
+  "description": "Upload file directly to azure blob",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azureBlobFileUploader/dev.git"
+  },
+  "keywords": [
+    "azure",
+    "blob",
+    "uploader"
+  ],
+  "author": "Sam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azureBlobFileUploader/dev/issues"
+  },
+  "homepage": "https://github.com/azureBlobFileUploader/dev#readme"
+}
