@@ -13,7 +13,7 @@ var azureBlobFileUploader = {
         var finishedOrError = false;
         var speedSummary = blobService.createBlockBlobFromBrowserFile(
           option.container,
-          option.path + option.file.name,
+          option.path + (option.name || option.file.name),
           option.file,
           { blockSize: customBlockSize },
           function(error, result, response) {
